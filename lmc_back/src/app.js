@@ -19,6 +19,7 @@ app.use('/', serveStatic(path.join(__dirname, '../..', 'lmc_front/dist')));
 
 // import controllers
 const listingsController = require('./controllers/listings-controller');
+const authController = require('./controllers/authentication-controller');
 
 // initialize the router
 const router = express.Router();
@@ -30,7 +31,9 @@ router.delete('/listings/:id', listingsController.deleteListing);
 router.post('/listings/:id', listingsController.updateListing);
 router.put('/listings', listingsController.createListing);
 
-/// USERS ROUTES /// todo
+/// AUTH ROUTES ///
+router.post('/auth/register', authController.register);
+router.post('/auth/login', authController.login);
 
 app.use('/api', router);
 
