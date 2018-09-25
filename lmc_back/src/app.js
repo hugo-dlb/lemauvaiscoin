@@ -1,8 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const serveStatic = require('serve-static');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
+
+// enable CORS for all requests
+app.use(cors());
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}));
