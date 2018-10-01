@@ -21,15 +21,18 @@ app.use('/', serveStatic(path.join(__dirname, '../..', 'lmc_front/dist')));
 const listingsController = require('./controllers/listings-controller');
 const authController = require('./controllers/authentication-controller');
 
+// import middlewares
+const loggedInMiddleware = require('./middlewares/logged-in-middleware').loggedInMiddleware;
+
 // initialize the router
 const router = express.Router();
 
 /// LISTINGS ROUTES ///
 router.get('/listings', listingsController.index);
 router.get('/listings/:id', listingsController.getListing);
-router.delete('/listings/:id', listingsController.deleteListing);
-router.post('/listings/:id', listingsController.updateListing);
-router.put('/listings', listingsController.createListing);
+router.delete('/listings/:id', loggedInMiddleware, listingsController.deleteListing);
+router.post('/listings/:id', loggedInMiddleware, listingsController.updateListing);
+router.put('/listings', loggedInMiddleware, listingsController.createListing);
 
 /// AUTH ROUTES ///
 router.post('/auth/register', authController.register);

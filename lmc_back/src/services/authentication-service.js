@@ -1,13 +1,13 @@
 const fs = require('fs');
-const USERS_FILE = 'src/db/users.json';
+const USERS_FILE = 'db/users.json';
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const SECRET = 'twentyporcupinesareintheline';
+const constants = require('../config');
 
 // authenticate user
 exports.authenticateUser = function(username, password) {
 	if (!username || !password) {
-		return null;
+		throw new Error('INVALID_PARAMETERS');
 	}
 
 	const users = JSON.parse(fs.readFileSync(USERS_FILE));
@@ -22,24 +22,25 @@ exports.authenticateUser = function(username, password) {
 	}
 
 	if (!user) {
-		return null;
-	} else {
-		const payload = {
-			admin: user.admin
-		};
-
-		const token = jwt.sign(payload, SECRET, {
-			expiresIn: '1d'
-		});
-
-		return token;
+		throw new Error('INVALID_CREDENTIALS');
 	}
+
+	delete user.hash;
+	const payload = {
+		user: user
+	};
+
+	const token = jwt.sign(payload, constants.JWT_SECRET, {
+		expiresIn: '1d'
+	});
+
+	return token;
 };
 
 // register a new user
 exports.registerUser = function(username, password) {
 	if (!username || !password) {
-		return null;
+		throw new Error('INVALID_PARAMETERS');
 	}
 
 	const users = JSON.parse(fs.readFileSync(USERS_FILE));
@@ -48,7 +49,7 @@ exports.registerUser = function(username, password) {
 		const currentUser = users[i];
 		if (currentUser.username === username) {
 			// username already exists
-			return null;
+			throw new Error('USERNAME_ALREADY_EXISTS');
 		}
 	}
 
@@ -63,10 +64,17 @@ exports.registerUser = function(username, password) {
 	const user = {
 		id: id,
 		username: username,
-		hash: hash
+		hash: hash,
+		level: 'USER'
 	};
 
 	users.push(user);
 	fs.writeFileSync(USERS_FILE, JSON.stringify(users));
-	return user;
+};
+
+// register a new user
+exports.getUserFromRequest = function(req) {
+	const token = req.headers.authorization.split(' ')[1];
+	const decodedPayload = jwt.verify(token, constants.JWT_SECRET);
+	return decodedPayload.user;
 };
