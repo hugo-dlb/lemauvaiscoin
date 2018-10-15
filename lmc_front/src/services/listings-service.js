@@ -5,7 +5,6 @@ Vue.use(require('vue-resource'));
 export class ListingsService {
 
     index() {
-        console.log(process.env);
         return Vue.http.get(process.env.VUE_APP_API_BASE_URL + '/listings');
     }
 

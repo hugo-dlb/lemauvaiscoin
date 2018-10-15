@@ -1,5 +1,5 @@
 const fs = require('fs');
-const LISTING_FILE = 'db/listings.json';
+const LISTING_FILE = 'src/db/listings.json';
 
 // get all listings
 exports.index = function() {

@@ -1,5 +1,5 @@
 const fs = require('fs');
-const USERS_FILE = 'db/users.json';
+const USERS_FILE = 'src/db/users.json';
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const constants = require('../config');

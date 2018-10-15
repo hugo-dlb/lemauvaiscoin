@@ -22,6 +22,11 @@
 
     export default {
         name: 'Listing',
+        data: function () {
+            return {
+                listings: []
+            }
+        },
         created: function () {
             const listingsService = new ListingsService();
             listingsService.index().then(response => {
