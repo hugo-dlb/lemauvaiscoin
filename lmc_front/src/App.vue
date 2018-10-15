@@ -1,19 +1,21 @@
 <template>
     <div id="app">
         <Menu/>
-        <Listing msg="tes"/>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
     import Menu from './components/Menu.vue';
     import Listing from './components/Listing.vue';
+    import CreateListingForm from './components/CreateListingForm.vue';
 
     export default {
         name: 'app',
         components: {
             Menu,
-            Listing
+            Listing,
+            CreateListingForm
         }
     };
 </script>
