@@ -1,0 +1,17 @@
+{
+    "url": "http://localhost:3000/api/auth/register",
+    "ok": false,
+    "status": 400,
+    "statusText": "Bad Request",
+    "headers": {
+        "map": {
+            "content-type": ["application/json; charset=utf-8"]
+        }
+    },
+    "body": {
+        "success": false,
+        "message": "Invalid parameters.",
+        "data": null
+    },
+    "bodyText": "{\"success\":false,\"message\":\"Invalid parameters.\",\"data\":null}"
+}

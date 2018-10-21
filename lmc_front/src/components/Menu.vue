@@ -4,42 +4,59 @@
             <router-link to="/">Le mauvais coin</router-link>
         </h5>
         <nav class="my-2 my-md-0 mr-md-3">
-            <router-link to="/create-listing" class="p-2 text-dark">New listing</router-link>
+            <router-link v-if="loggedIn" to="/create-listing" class="p-2 text-dark">New listing</router-link>
+<!--            <a v-if="!loggedIn" v-on:click="testLogin" class="btn btn-outline-primary login-btn" href="#">Test Login</a>-->
+            <button type="button" v-if="loggedIn" v-on:click="logout" class="btn btn-danger">Logout</button>
+            <router-link v-if="!loggedIn" to="/login" class="btn btn-outline-primary">Login</router-link>
+            <router-link v-if="!loggedIn" to="/sign-up" class="btn btn-outline-primary">Sign Up</router-link>
         </nav>
-        <a v-if="!loggedIn" v-on:click="testLogin" class="btn btn-outline-primary login-btn" href="#">Test Login</a>
-        <a v-if="!loggedIn" class="btn btn-outline-primary login-btn">Login</a>
-        <button type="button" v-if="loggedIn" v-on:click="logout" class="btn btn-danger">Logout</button>
-        <a v-if="!loggedIn" class="btn btn-primary">Sign up</a>
+       
     </div>
 </template>
 
 <script>
-    import {AuthenticationService} from '../services/authentication-service';
+    import {
+        bus
+    } from '../main.js';
+    import {
+        AuthenticationService
+    } from '../services/authentication-service';
+
     import jwt_decode from 'jwt-decode';
 
     export default {
         name: 'Menu',
-        data: function () {
+        data: function() {
             return {
                 loggedIn: false
             }
         },
-        created: function () {
+        mounted() {
+            bus.$on('checkLogin', this.checkLoggedIn);
+        },
+
+        data: function() {
+            return {
+                loggedIn: false
+            }
+        },
+        created: function() {
             this.checkLoggedIn();
         },
         methods: {
-            testLogin: function () {
-                // for testing purpose only
-                const authenticationService = new AuthenticationService();
-                authenticationService.login({
-                    username: 'hugo',
-                    password: 'hugo'
-                }).then(response => {
-                    localStorage.setItem('token', response.body.data.token);
-                    this.checkLoggedIn();
-                });
-            },
-            checkLoggedIn: function () {
+
+            /* testLogin: function() {
+                 // for testing purpose only
+                 const authenticationService = new AuthenticationService();
+                 authenticationService.login({
+                     username: 'hugo',
+                     password: 'hugo'
+                 }).then(response => {
+                     localStorage.setItem('token', response.body.data.token);
+                     this.checkLoggedIn();
+                 });
+             },*/
+            checkLoggedIn: function() {
                 const token = localStorage.getItem('token');
                 if (token) {
                     const decodedToken = jwt_decode(token);
@@ -53,7 +70,7 @@
                     this.loggedIn = false;
                 }
             },
-            assertAlive: function (decoded) {
+            assertAlive: function(decoded) {
                 const now = Date.now().valueOf() / 1000
                 if (typeof decoded.exp !== 'undefined' && decoded.exp < now) {
                     throw new Error(`token expired: ${JSON.stringify(decoded)}`)
@@ -62,12 +79,14 @@
                     throw new Error(`token expired: ${JSON.stringify(decoded)}`)
                 }
             },
-            logout: function () {
+            logout: function() {
                 localStorage.removeItem('token');
                 this.loggedIn = false;
+                this.$router.push('home');
             }
         }
     }
+
 </script>
 
 <style>
@@ -79,7 +98,8 @@
         border-bottom: 1px solid #dee2e6 !important;
     }
 
-    .login-btn {
-        margin-right: 5px;
+    .btn {
+        margin-right: 3px;
     }
+
 </style>
