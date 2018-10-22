@@ -4,7 +4,7 @@ import App from './App.vue';
 
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
-import Listing from './components/Listing';
+import Home from './components/Home';
 import CreateListingForm from './components/CreateListingForm';
 import SignUpForm from './components/SignUpForm';
 import LoginForm from './components/LoginForm';
@@ -26,7 +26,7 @@ const routes = [
     {
         path: '/home',
         name: 'home',
-        component: Listing
+        component: Home
     },
     {
         path: '/create-listing',
