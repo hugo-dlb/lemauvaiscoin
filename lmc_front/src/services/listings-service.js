@@ -21,6 +21,10 @@ export class ListingsService {
     }
 
     createListing(listing) {
-        return Vue.http.put(process.env.VUE_APP_API_BASE_URL + '/listings', listing);
+        return Vue.http.put(process.env.VUE_APP_API_BASE_URL + '/listings', listing, {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
     }
 }

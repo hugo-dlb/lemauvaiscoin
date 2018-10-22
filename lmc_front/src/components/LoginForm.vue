@@ -48,6 +48,7 @@
                     username: this.username,
                     password: this.password
                 }).then(response => {
+                    debugger
                     localStorage.setItem('token', response.body.data.token);
                     this.$router.push('home');
                 }).catch(err => {
