@@ -12,10 +12,6 @@
     import SignUpForm from './components/SignUpForm.vue';
     import LoginForm from './components/LoginForm.vue';
     import {
-        AuthenticationService
-    } from './services/authentication-service';
-    import jwt_decode from 'jwt-decode';
-    import {
         bus
     } from './main.js';
 
