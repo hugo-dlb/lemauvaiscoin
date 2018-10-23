@@ -22,5 +22,5 @@ yarn-error.log*
 *.sw*
 
 # Database files
-/db/listings.json
-/db/users.json
+src/db/listings.json
+src/db/users.json
