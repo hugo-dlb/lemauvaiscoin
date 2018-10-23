@@ -37,6 +37,23 @@ exports.getListing = function (id) {
     return listing;
 };
 
+// get all listings from a user
+exports.getUserListings = function (user) {
+    const listings = JSON.parse(fs.readFileSync(LISTING_FILE));
+
+    let userListings = [];
+
+    for (let i = 0; i < listings.length; i++) {
+        const listing = listings[i];
+        if (listing.userId === user.id) {
+			userListings.push(listing);
+            break;
+        }
+    }
+
+    return userListings;
+};
+
 // delete a listing
 exports.deleteListing = function (user, id) {
     if (id === -1) {

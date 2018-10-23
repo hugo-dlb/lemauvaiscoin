@@ -33,6 +33,7 @@ router.get('/listings/:id', listingsController.getListing);
 router.delete('/listings/:id', loggedInMiddleware, listingsController.deleteListing);
 router.post('/listings/:id', loggedInMiddleware, listingsController.updateListing);
 router.put('/listings', loggedInMiddleware, listingsController.createListing);
+router.get('/userListings', loggedInMiddleware, listingsController.getUserListings);
 
 /// AUTH ROUTES ///
 router.post('/auth/register', authController.register);

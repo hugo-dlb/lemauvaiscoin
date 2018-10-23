@@ -4,21 +4,18 @@
             <router-link to="/">Le mauvais coin</router-link>
         </h5>
         <nav class="my-2 my-md-0 mr-md-3">
-            <router-link v-if="loggedIn" to="/create-listing" class="p-2 text-dark">New listing</router-link>
-            <!--            <a v-if="!loggedIn" v-on:click="testLogin" class="btn btn-outline-primary login-btn" href="#">Test Login</a>-->
+            <router-link v-if="loggedIn" to="/create-listing" class="p-2 text-dark mr-1">New listing</router-link>
+            <router-link v-if="loggedIn" to="/my-listings" class="p-2 text-dark mr-1">My listings</router-link>
             <button type="button" v-if="loggedIn" v-on:click="logout" class="btn btn-danger">Logout</button>
             <router-link v-if="!loggedIn" to="/login" class="btn btn-outline-primary">Login</router-link>
             <router-link v-if="!loggedIn" to="/sign-up" class="btn btn-outline-primary">Sign Up</router-link>
         </nav>
-
     </div>
 </template>
 
 <script>
-    import {AuthenticationService} from '../services/authentication-service';
     import {bus} from '../main.js';
     import jwt_decode from 'jwt-decode';
-    import Vue from 'vue';
 
     export default {
         name: 'Menu',
@@ -34,18 +31,6 @@
             this.checkLoggedIn();
         },
         methods: {
-            testLogin: function () {
-                // for testing purpose only
-                const authenticationService = new AuthenticationService();
-                authenticationService.login({
-                    username: 'hugo',
-                    password: 'hugo'
-                }).then(response => {
-                    localStorage.setItem('token', response.body.data.token);
-                    Vue.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-                    this.checkLoggedIn();
-                });
-            },
             checkLoggedIn: function () {
                 const token = localStorage.getItem('token');
                 if (token) {

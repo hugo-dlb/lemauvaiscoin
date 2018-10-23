@@ -12,6 +12,10 @@ export class ListingsService {
         return Vue.http.get(process.env.VUE_APP_API_BASE_URL + '/listings/' + id);
     }
 
+    getUserListings() {
+        return Vue.http.get(process.env.VUE_APP_API_BASE_URL + '/userListings', {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}});
+    }
+
     deleteListing(id) {
         return Vue.http.delete(process.env.VUE_APP_API_BASE_URL + '/listings/' + id, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}});
     }

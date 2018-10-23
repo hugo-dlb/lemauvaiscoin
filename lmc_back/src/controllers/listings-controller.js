@@ -13,6 +13,19 @@ exports.index = function(req, res) {
 	});
 };
 
+// get all listings from the connected user
+exports.getUserListings = function(req, res) {
+	const user = AuthenticationService.getUserFromRequest(req);
+	const listings = ListingsService.getUserListings(user);
+	res.send({
+		success: true,
+		message: null,
+		data: {
+			listings: listings
+		}
+	});
+};
+
 // get a listing
 exports.getListing = function(req, res) {
 	try {

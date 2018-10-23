@@ -10,6 +10,7 @@ import CreateListingForm from './components/CreateListingForm';
 import SignUpForm from './components/SignUpForm';
 import LoginForm from './components/LoginForm';
 import ListingDetails from './components/ListingDetails';
+import MyListings from './components/MyListings';
 
 Vue.use(VueResource);
 Vue.use(VueRouter);
@@ -39,6 +40,11 @@ const routes = [
         path: '/listing/:id',
         name: 'listingDetails',
         component: ListingDetails
+    },
+    {
+        path: '/my-listings',
+        name: 'myListings',
+        component: MyListings
     },
     {
         path: '/sign-up',
