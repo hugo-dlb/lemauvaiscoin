@@ -32,7 +32,7 @@ exports.login = function(req, res) {
 // register
 exports.register = function(req, res) {
 	try {
-		AuthenticationService.registerUser(req.body.username, req.body.password);
+		AuthenticationService.registerUser(req.body.username, req.body.password, req.body.phoneNumber, req.body.email);
 
 		res.send({
 			success: true,

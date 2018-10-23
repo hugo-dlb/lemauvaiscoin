@@ -11,8 +11,17 @@
                     </div>
                     <div class="form-group">
                         <label for="password">Password *</label>
-                        <input v-model="password" type="password" class="form-control" id="email" placeholder="password" aria-describedby="passwordHelp">
+                        <input v-model="password" type="password" class="form-control" id="password" placeholder="password" aria-describedby="passwordHelp">
                         <small id="passwordHelp" class="form-text text-muted">Please choose a cool password</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone number *</label>
+                        <input v-model="phone" type="text" class="form-control" id="phone" placeholder="Phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input v-model="email" type="email" class="form-control" id="email" placeholder="Email" aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -38,6 +47,8 @@
             return {
                 username: '',
                 password: '',
+                email: '',
+                phone: '',
                 error: false,
                 message: ''
             }
@@ -47,12 +58,12 @@
                 const authService = new AuthenticationService();
                 authService.register({
                     username: this.username,
-                    password: this.password
+                    password: this.password,
+                    email: this.email,
+                    phoneNumber: this.phone
                 }).then(response => {
-                    console.log("registerok")
-                    this.$router.push('home');
+                    this.$router.push('login');
                 }).catch(err => {
-                    console.log("registernotok")
                     this.message = err.body.message;
                     this.error = true;
                 });

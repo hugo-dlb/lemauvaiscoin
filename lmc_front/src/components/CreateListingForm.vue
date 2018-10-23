@@ -8,17 +8,12 @@
                         <input v-model="title" type="text" class="form-control" id="title" placeholder="Title">
                     </div>
                     <div class="form-group">
+                        <label for="image">Image URL</label>
+                        <input v-model="image" rows="5" class="form-control" id="image" placeholder="Image URL">
+                    </div>
+                    <div class="form-group">
                         <label for="description">Description *</label>
                         <textarea v-model="description" rows="5" type="text" class="form-control" id="description" placeholder="Description"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone number *</label>
-                        <input v-model="phone" type="text" class="form-control" id="phone" placeholder="Phone number">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input v-model="email" type="email" class="form-control" id="email" placeholder="Email" aria-describedby="emailHelp">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -35,9 +30,8 @@
         data: function () {
             return {
                 title: '',
-                description: '',
-                email: '',
-                phone: ''
+                image: '',
+                description: ''
             }
         },
         methods: {
@@ -45,9 +39,8 @@
                 const listingsService = new ListingsService();
                 listingsService.createListing({
                     title: this.title,
-                    description: this.description,
-                    email: this.email,
-                    phoneNumber: this.phone
+                    image: this.image,
+                    description: this.description
                 }).then(response => {
                     this.$router.push('home');
                 });

@@ -38,8 +38,8 @@ exports.authenticateUser = function (username, password) {
 };
 
 // register a new user
-exports.registerUser = function (username, password) {
-    if (!username || !password) {
+exports.registerUser = function (username, password, phoneNumber, email) {
+    if (!username || !password || !phoneNumber || !email) {
         throw new Error('INVALID_PARAMETERS');
     }
 
@@ -53,7 +53,7 @@ exports.registerUser = function (username, password) {
         }
     }
 
-    let id = 0;
+    let id = 1;
     if (users.length > 0) {
         id = users[users.length - 1].id + 1;
     }
@@ -64,6 +64,8 @@ exports.registerUser = function (username, password) {
     const user = {
         id: id,
         username: username,
+		phoneNumber: phoneNumber,
+		email: email,
         hash: hash,
         level: 'USER'
     };

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const LISTING_FILE = 'src/db/listings.json';
+const USERS_FILE = 'src/db/users.json';
 
 // get all listings
 exports.index = function () {
@@ -21,6 +22,17 @@ exports.getListing = function (id) {
     if (!listing) {
         throw new Error('NOT_FOUND');
     }
+
+	const users = JSON.parse(fs.readFileSync(USERS_FILE));
+	const user = users.find(function (element) {
+		return (element.id === listing.userId);
+	});
+
+	if (!user) {
+		throw new Error('NOT_FOUND');
+	}
+
+	listing.user = user;
 
     return listing;
 };
@@ -93,19 +105,25 @@ exports.updateListing = function (user, id, requestBody) {
 
 // create a listing
 exports.createListing = function (user, listing) {
-    if (!listing.title || !listing.description || !listing.email || !listing.phoneNumber) {
+    if (!listing.title || !listing.description) {
         throw new Error('INVALID_PARAMETERS');
     }
 
+    if (!listing.image) {
+    	listing.image = 'http://convert-my-image.com/Content/img/no-image.png';
+	}
+
     const listings = JSON.parse(fs.readFileSync(LISTING_FILE));
 
-    let newId = 0;
+    let newId = 1;
     if (listings.length > 0) {
         newId = listings[listings.length - 1].id + 1
     }
 
     listing.id = newId;
     listing.userId = user.id;
+
+    listing.createdAt = Date.now();
     listings.push(listing);
 
     fs.writeFileSync(LISTING_FILE, JSON.stringify(listings));

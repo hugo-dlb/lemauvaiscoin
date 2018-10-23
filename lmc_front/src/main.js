@@ -1,3 +1,4 @@
+import '../node_modules/font-awesome/css/font-awesome.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import Vue from 'vue';
 import App from './App.vue';
@@ -8,6 +9,7 @@ import Home from './components/Home';
 import CreateListingForm from './components/CreateListingForm';
 import SignUpForm from './components/SignUpForm';
 import LoginForm from './components/LoginForm';
+import ListingDetails from './components/ListingDetails';
 
 Vue.use(VueResource);
 Vue.use(VueRouter);
@@ -32,6 +34,11 @@ const routes = [
         path: '/create-listing',
         name: 'createListing',
         component: CreateListingForm
+    },
+    {
+        path: '/listing/:id',
+        name: 'listingDetails',
+        component: ListingDetails
     },
     {
         path: '/sign-up',
