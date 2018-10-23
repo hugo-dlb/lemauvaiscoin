@@ -3,17 +3,22 @@
         <div class="row">
             <div class="col">
                 <form v-on:submit.prevent="onSubmit">
+                    <p class="error-message" v-if="error">{{message}}</p>
                     <div class="form-group">
                         <label for="title">Title *</label>
-                        <input v-model="title" type="text" class="form-control" id="title" placeholder="Title">
+                        <input type="text" v-model="title" class="form-control" id="title" placeholder="Title">
                     </div>
                     <div class="form-group">
                         <label for="image">Image URL</label>
-                        <input v-model="image" rows="5" class="form-control" id="image" placeholder="Image URL">
+                        <input type="text" v-model="image" class="form-control" id="image" placeholder="Image URL">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price *</label>
+                        <input type="number" min="1" v-model="price" class="form-control" id="price" placeholder="Price">
                     </div>
                     <div class="form-group">
                         <label for="description">Description *</label>
-                        <textarea v-model="description" rows="5" type="text" class="form-control" id="description" placeholder="Description"></textarea>
+                        <textarea v-model="description" rows="5" class="form-control" id="description" placeholder="Description"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -31,7 +36,10 @@
             return {
                 title: '',
                 image: '',
-                description: ''
+                price: 0,
+                description: '',
+                error: false,
+                message: ''
             }
         },
         methods: {
@@ -40,9 +48,13 @@
                 listingsService.createListing({
                     title: this.title,
                     image: this.image,
+                    price: this.price || 0,
                     description: this.description
-                }).then(response => {
+                }).then(res => {
                     this.$router.push('home');
+                }).catch(err => {
+                    this.message = err.body.message;
+                    this.error = true;
                 });
             }
         }

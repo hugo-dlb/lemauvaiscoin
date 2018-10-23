@@ -128,10 +128,18 @@ exports.createListing = function(req, res) {
 			}
 		});
 	} catch (err) {
-		res.status(400).send({
-			success: false,
-			message: 'Invalid parameters.',
-			data: null
-		});
+		if (err.message === 'INVALID_PRICE') {
+			res.status(400).send({
+				success: false,
+				message: 'The price must be greater than 0.',
+				data: null
+			});
+		} else {
+			res.status(400).send({
+				success: false,
+				message: 'Invalid parameters.',
+				data: null
+			});
+		}
 	}
 };

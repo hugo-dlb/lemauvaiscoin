@@ -20,3 +20,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+
+# Database files
+/db/listings.json
+/db/users.json

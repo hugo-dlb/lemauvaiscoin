@@ -61,7 +61,7 @@
                     password: this.password,
                     email: this.email,
                     phoneNumber: this.phone
-                }).then(response => {
+                }).then(res => {
                     this.$router.push('login');
                 }).catch(err => {
                     this.message = err.body.message;

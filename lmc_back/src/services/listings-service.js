@@ -105,12 +105,17 @@ exports.updateListing = function (user, id, requestBody) {
 
 // create a listing
 exports.createListing = function (user, listing) {
-    if (!listing.title || !listing.description) {
+    if (!listing.title || !listing.description || (listing.price === undefined)) {
         throw new Error('INVALID_PARAMETERS');
     }
 
     if (!listing.image) {
     	listing.image = 'http://convert-my-image.com/Content/img/no-image.png';
+	}
+
+	listing.price = Number.parseInt(listing.price);
+	if (listing.price <= 0) {
+		throw new Error('INVALID_PRICE');
 	}
 
     const listings = JSON.parse(fs.readFileSync(LISTING_FILE));
