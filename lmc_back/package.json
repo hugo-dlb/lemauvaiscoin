@@ -6,7 +6,7 @@
     "main": "src/app.js",
     "scripts": {
         "start": "node src/app.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "mocha"
     },
     "author": "",
     "license": "ISC",
@@ -17,5 +17,8 @@
         "express": "^4.16.3",
         "jsonwebtoken": "^8.3.0",
         "serve-static": "^1.13.2"
+    },
+    "devDependencies": {
+        "mocha": "^5.2.0"
     }
 }
