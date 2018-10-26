@@ -9,7 +9,7 @@ jobs:
     # specify the version you desire here
     - image: circleci/node:8.11.3
 
-    working_directory: ~/lemauvaiscoin
+    working_directory: ~/lemauvaiscoin/lmc_back
 
     steps:
     - checkout
