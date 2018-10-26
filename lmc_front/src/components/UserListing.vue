@@ -1,16 +1,16 @@
 <template>
-    <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="my-card">
-            <div class="my-img-cont" ref="imgcont" v-bind:style="{ 'background-image': 'url(' + listing.image + ')' }">
-            </div>
-
-            <div class="my-card-body">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
                 <h5 class="card-title">{{listing.title}}</h5>
-                <p class="card-text" ref="text">{{listing.description}}</p>
+                <img class="image" :src="listing.image" />
+                <div class="card-desc">
+                    <p class="card-text" ref="text">{{listing.description}}</p>
+                </div>
             </div>
-
-            <div class="my-card-timestamp">
-                {{listing.createdAt}}
+            <div class="card-footer">
+                <p class="float-left">{{listing.formattedTime}}</p>
+                <button v-on:click="deleteListing" class="btn btn-danger float-right"><i class="fa fa-times mr-1"></i>Delete</button>
             </div>
         </div>
     </div>
@@ -21,39 +21,32 @@
         name: 'UserListing',
         props: ['listing'],
         created: function() {
+        },
+        methods: {
+            deleteListing: function() {
+                this.$emit('deleteClicked', this.listing);
+            }
         }
     }
 </script>
 
 <style>
-    .my-card {
-        margin-bottom: 20px;
-    }
-
-    .my-card-body {
-        padding: 1.25rem;
-        height: 6.7rem;
-        overflow: hidden;
-
-    }
-
-    .my-img-cont {
-        height: 10rem;
+    .image {
+        height: 160px;
         width: auto;
-        overflow: hidden;
-
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-
-        /*        overflow: hidden;*/
-        border-top-left-radius: calc(0.25rem - 1px);
-        border-top-right-radius: calc(0.25rem - 1px);
+        display: inline-block;
     }
 
-    .my-card-timestamp {
-        padding: 0.75rem 1.25rem;
-        background-color: rgba(0, 0, 0, 0.03);
-        border-top: 1px solid rgba(0, 0, 0, 0.125);
+    .card-desc {
+        position: absolute;
+        padding-top: 10px;
+        padding-left: 20px;
+        display: inline-block;
+        height: 160px;
+        overflow-y: auto;
+    }
+
+    .card {
+        margin-bottom: 20px;
     }
 </style>

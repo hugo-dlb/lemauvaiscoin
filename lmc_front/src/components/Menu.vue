@@ -1,14 +1,14 @@
 <template>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
         <h5 class="my-0 mr-md-auto font-weight-normal">
-            <router-link to="/">Le mauvais coin</router-link>
+            <router-link to="/" exact>Le mauvais coin</router-link>
         </h5>
         <nav class="my-2 my-md-0 mr-md-3">
-            <router-link v-if="loggedIn" to="/create-listing" class="p-2 text-dark mr-1">New listing</router-link>
-            <router-link v-if="loggedIn" to="/my-listings" class="p-2 text-dark mr-1">My listings</router-link>
-            <button type="button" v-if="loggedIn" v-on:click="logout" class="btn btn-danger">Logout</button>
-            <router-link v-if="!loggedIn" to="/login" class="btn btn-outline-primary">Login</router-link>
-            <router-link v-if="!loggedIn" to="/sign-up" class="btn btn-outline-primary">Sign Up</router-link>
+            <router-link v-if="loggedIn" to="/create-listing" class="p-2 text-dark mr-1" exact>New listing</router-link>
+            <router-link v-if="loggedIn" to="/my-listings" class="p-2 text-dark mr-1" exact>My listings</router-link>
+            <button type="button" v-if="loggedIn" v-on:click="logout" class="btn btn-danger" exact>Logout</button>
+            <router-link v-if="!loggedIn" to="/login" class="btn btn-outline-primary mr-1" exact>Login</router-link>
+            <router-link v-if="!loggedIn" to="/sign-up" class="btn btn-outline-primary" exact>Sign Up</router-link>
         </nav>
     </div>
 </template>
@@ -72,5 +72,8 @@
     }
     .btn {
         margin-right: 3px;
+    }
+    a.text-dark.router-link-exact-active:focus {
+        color: #027bff !important;
     }
 </style>

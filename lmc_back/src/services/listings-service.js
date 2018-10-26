@@ -47,7 +47,6 @@ exports.getUserListings = function (user) {
         const listing = listings[i];
         if (listing.userId === user.id) {
 			userListings.push(listing);
-            break;
         }
     }
 
@@ -82,7 +81,8 @@ exports.deleteListing = function (user, id) {
 
     listings.splice(index, 1);
     fs.writeFileSync(LISTING_FILE, JSON.stringify(listings));
-    return listings;
+
+	return this.getUserListings(user);
 };
 
 // update a listing
