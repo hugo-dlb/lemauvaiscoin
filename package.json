@@ -2,7 +2,8 @@
   "name": "lemauvaiscoin",
   "version": "1.0.0",
   "scripts": {
-    "postinstall": "cd lmc_back && npm install && cd ../lmc_front && npm install && npm run build && cd ../lmc_back && npm start"
+    "postinstall": "cd lmc_back && npm install && cd ../lmc_front && npm install && npm run build",
+    "start": "cd lmc_back && npm start"
   },
   "engines": {
     "node": "11.0.0"
