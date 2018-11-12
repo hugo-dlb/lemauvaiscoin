@@ -41,6 +41,6 @@ router.post('/auth/login', authController.login);
 
 app.use('/api', router);
 
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {
 	console.log('lmc REST API listening on port 3000!')
 });
