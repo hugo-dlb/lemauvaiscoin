@@ -23,7 +23,7 @@
                         <input v-model="email" type="email" class="form-control" id="email" placeholder="Email" aria-describedby="emailHelp">
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn my-btn">Submit</button>
                 </form>
             </div>
         </div>
@@ -32,6 +32,18 @@
 <style>
     .error-message {
         color: red;
+    }
+
+    .my-btn {
+        color: #083358;
+        background-color: transparent;
+        background-image: none;
+        border-color: #083358;
+    }
+
+    .my-btn:hover {
+        background-color: #083358;
+        color: #f6f6f6;
     }
 
 </style>

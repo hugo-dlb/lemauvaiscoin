@@ -11,24 +11,33 @@
 </template>
 
 <script>
-    import {ListingsService} from '../services/listings-service';
+    import {
+        ListingsService
+    } from '../services/listings-service';
     import Listing from './Listing';
 
     export default {
         name: 'Home',
-        data: function () {
+        data: function() {
             return {
                 listings: []
             }
         },
-        created: function () {
+        created: function() {
             const listingsService = new ListingsService();
             listingsService.index().then(response => {
-                this.listings = response.body.data.listings;
+                const gotListings = response.body.data.listings;
+                gotListings.sort(function(a, b) {
+                    return new Date(b.createdAt) - new Date(a.createdAt);
+                });
+                this.listings = gotListings;
             });
+
         },
+
         components: {
             Listing
         }
     }
+
 </script>

@@ -26,18 +26,36 @@
         </div>
     </div>
 </template>
+<style>
+    .card-body {
+        background-color: #0f4471;
+        color: #f6f6f6;
+    }
+
+    .card-footer {
+        background-color: #083358;
+        color: #f6f6f6;
+    }
+
+    .fa {
+        color: #f6f6f6;
+    }
+
+</style>
 
 <script>
-    import {ListingsService} from '../services/listings-service';
+    import {
+        ListingsService
+    } from '../services/listings-service';
 
     export default {
         name: 'ListingDetails',
-        data: function () {
+        data: function() {
             return {
                 'listing': null
             }
         },
-        created: function () {
+        created: function() {
             const listingsService = new ListingsService();
             listingsService.getListing(this.$route.params.id).then(response => {
                 this.listing = response.body.data.listing;
@@ -46,10 +64,12 @@
             });
         }
     }
+
 </script>
 
 <style>
     .blue {
         color: #007bff;
     }
+
 </style>
