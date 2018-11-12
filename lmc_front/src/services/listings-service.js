@@ -5,27 +5,27 @@ Vue.use(require('vue-resource'));
 export class ListingsService {
 
     index() {
-        return Vue.http.get('/listings');
+        return Vue.http.get('/api/listings');
     }
 
     getListing(id) {
-        return Vue.http.get('/listings/' + id);
+        return Vue.http.get('/api/listings/' + id);
     }
 
     getUserListings() {
-        return Vue.http.get('/userListings', {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}});
+        return Vue.http.get('/api/userListings', {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}});
     }
 
     deleteListing(id) {
-        return Vue.http.delete('/listings/' + id, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}});
+        return Vue.http.delete('/api/listings/' + id, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}});
     }
 
     updateListing(listing) {
-        return Vue.http.post('/listings/' + listing.id, listing, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}});
+        return Vue.http.post('/api/listings/' + listing.id, listing, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}});
     }
 
     createListing(listing) {
-        return Vue.http.put('/listings', listing, {
+        return Vue.http.put('/api/listings', listing, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
