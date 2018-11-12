@@ -70,7 +70,7 @@
     }
 
     .my-card:hover>.my-card-hover {
-        opacity: 0.3;
+        opacity: 0.4;
     }
 
     .my-card-hover {
@@ -78,7 +78,7 @@
         height: 100%;
         width: 100%;
         opacity: 0;
-        background-color: grey;
+        background-color: black;
         /*rgba(102, 102, 153, 0.4);*/
         transition: opacity 0.5s ease;
     }

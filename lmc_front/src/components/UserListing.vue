@@ -20,14 +20,14 @@
     export default {
         name: 'UserListing',
         props: ['listing'],
-        created: function() {
-        },
+        created: function() {},
         methods: {
             deleteListing: function() {
                 this.$emit('deleteClicked', this.listing);
             }
         }
     }
+
 </script>
 
 <style>
@@ -35,6 +35,10 @@
         height: 160px;
         width: auto;
         display: inline-block;
+    }
+
+    .card {
+        box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     .card-desc {
@@ -49,4 +53,5 @@
     .card {
         margin-bottom: 20px;
     }
+
 </style>

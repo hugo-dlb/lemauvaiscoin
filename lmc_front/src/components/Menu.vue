@@ -1,7 +1,7 @@
 <template>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 shadow-sm my-menu">
         <h5 class="my-0 mr-md-auto font-weight-normal">
-            <router-link to="/" exact>Le mauvais coin</router-link>
+            <router-link to="/" exact><img src="../img/logo.png" class="logo" alt="logo"/></router-link>
         </h5>
         <nav class="my-2 my-md-0 mr-md-3">
             <router-link v-if="loggedIn" to="/create-listing" class="p-2 mr-1 my-text" exact>New listing</router-link>
@@ -69,6 +69,7 @@
 <style>
     .my-menu {
         background-color: #083358;
+        position: relative;
     }
 
     .my-text {
@@ -79,6 +80,10 @@
 
     .my-text:hover {
         color: #f6f6f6;
+    }
+
+    .logo {
+        height: 50px;
     }
 
     .my-info-btn {

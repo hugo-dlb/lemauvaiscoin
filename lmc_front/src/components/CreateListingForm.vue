@@ -3,6 +3,7 @@
         <div class="row">
             <div class="col">
                 <form v-on:submit.prevent="onSubmit">
+                    <h1>Create new listing</h1>
                     <p class="error-message" v-if="error">{{message}}</p>
                     <div class="form-group">
                         <label for="title">Title *</label>

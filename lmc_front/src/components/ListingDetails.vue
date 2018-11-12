@@ -10,7 +10,7 @@
                         <h5 class="card-title">
                             {{listing.title}}
                         </h5>
-                        <h6 class="card-subtitle mb-2 text-muted">
+                        <h6 class="card-subtitle mb-2 ">
                             {{listing.formattedTime}}
                         </h6>
                         <p class="card-text">
@@ -18,8 +18,8 @@
                         </p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><i class="fa fa-at blue"></i> {{listing.user.email}}</li>
-                        <li class="list-group-item"><i class="fa fa-phone blue"></i> {{listing.user.phoneNumber}}</li>
+                        <li class="list-group-item"><i class="fa fa-at"></i> {{listing.user.email}}</li>
+                        <li class="list-group-item"><i class="fa fa-phone"></i> {{listing.user.phoneNumber}}</li>
                     </ul>
                 </div>
             </div>
@@ -38,6 +38,11 @@
     }
 
     .fa {
+        color: #f6f6f6;
+    }
+
+    .list-group-item {
+        background-color: #083358;
         color: #f6f6f6;
     }
 

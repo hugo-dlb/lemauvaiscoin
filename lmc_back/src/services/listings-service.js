@@ -23,16 +23,16 @@ exports.getListing = function (id) {
         throw new Error('NOT_FOUND');
     }
 
-	const users = JSON.parse(fs.readFileSync(USERS_FILE));
-	const user = users.find(function (element) {
-		return (element.id === listing.userId);
-	});
+    const users = JSON.parse(fs.readFileSync(USERS_FILE));
+    const user = users.find(function (element) {
+        return (element.id === listing.userId);
+    });
 
-	if (!user) {
-		throw new Error('NOT_FOUND');
-	}
+    if (!user) {
+        throw new Error('NOT_FOUND');
+    }
 
-	listing.user = user;
+    listing.user = user;
 
     return listing;
 };
@@ -46,7 +46,7 @@ exports.getUserListings = function (user) {
     for (let i = 0; i < listings.length; i++) {
         const listing = listings[i];
         if (listing.userId === user.id) {
-			userListings.push(listing);
+            userListings.push(listing);
         }
     }
 
@@ -82,7 +82,7 @@ exports.deleteListing = function (user, id) {
     listings.splice(index, 1);
     fs.writeFileSync(LISTING_FILE, JSON.stringify(listings));
 
-	return this.getUserListings(user);
+    return this.getUserListings(user);
 };
 
 // update a listing
@@ -127,13 +127,13 @@ exports.createListing = function (user, listing) {
     }
 
     if (!listing.image) {
-    	listing.image = 'http://convert-my-image.com/Content/img/no-image.png';
-	}
+        listing.image = 'https://i.imgur.com/zTiUHgx.png';
+    }
 
-	listing.price = Number.parseInt(listing.price);
-	if (listing.price <= 0) {
-		throw new Error('INVALID_PRICE');
-	}
+    listing.price = Number.parseInt(listing.price);
+    if (listing.price <= 0) {
+        throw new Error('INVALID_PRICE');
+    }
 
     const listings = JSON.parse(fs.readFileSync(LISTING_FILE));
 
