@@ -4,5 +4,8 @@
   "scripts": {
     "start": "npm install --prefix lmc_back && npm install --prefix lmc_front && npm run build --prefix lmc_front",
     "postinstall": "npm start --prefix lmc_back"
+  },
+  "engines": {
+    "node": "11.0.0"
   }
 }
