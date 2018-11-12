@@ -1,0 +1,8 @@
+{
+  "name": "lemauvaiscoin",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npm install --prefix lmc_back",
+    "postinstall": "npm start --prefix lmc_back"
+  }
+}
