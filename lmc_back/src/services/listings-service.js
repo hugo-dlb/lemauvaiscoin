@@ -127,7 +127,7 @@ exports.createListing = function (user, listing) {
     }
 
     if (!listing.image) {
-        listing.image = 'https://i.imgur.com/zTiUHgx.png';
+        listing.image = 'https://i.imgur.com/LTDIbwC.jpg';
     }
 
     listing.price = Number.parseInt(listing.price);
