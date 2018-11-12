@@ -13,7 +13,7 @@
                         <label for="password">Password *</label>
                         <input v-model="password" type="password" class="form-control" id="email" placeholder="password" >
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn my-btn">Submit</button>
                 </form>
             </div>
         </div>
@@ -22,6 +22,18 @@
 <style>
     .error-message {
         color: red;
+    }
+
+    .my-btn {
+        color: #083358;
+        background-color: transparent;
+        background-image: none;
+        border-color: #083358;
+    }
+
+    .my-btn:hover {
+        background-color: #083358;
+        color: #f6f6f6;
     }
 
 </style>

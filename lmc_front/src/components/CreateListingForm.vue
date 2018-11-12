@@ -3,6 +3,7 @@
         <div class="row">
             <div class="col">
                 <form v-on:submit.prevent="onSubmit">
+                    <h1>Create new listing</h1>
                     <p class="error-message" v-if="error">{{message}}</p>
                     <div class="form-group">
                         <label for="title">Title *</label>
@@ -20,19 +21,35 @@
                         <label for="description">Description *</label>
                         <textarea v-model="description" rows="5" class="form-control" id="description" placeholder="Description"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn my-btn">Submit</button>
                 </form>
             </div>
         </div>
     </div>
 </template>
+<style>
+    .my-btn {
+        color: #083358;
+        background-color: transparent;
+        background-image: none;
+        border-color: #083358;
+    }
+
+    .my-btn:hover {
+        background-color: #083358;
+        color: #f6f6f6;
+    }
+
+</style>
 
 <script>
-    import {ListingsService} from '../services/listings-service';
+    import {
+        ListingsService
+    } from '../services/listings-service';
 
     export default {
         name: 'CreateListingForm',
-        data: function () {
+        data: function() {
             return {
                 title: '',
                 image: '',
@@ -43,7 +60,7 @@
             }
         },
         methods: {
-            onSubmit: function () {
+            onSubmit: function() {
                 const listingsService = new ListingsService();
                 listingsService.createListing({
                     title: this.title,
@@ -59,4 +76,5 @@
             }
         }
     }
+
 </script>
