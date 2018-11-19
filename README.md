@@ -7,6 +7,6 @@ Le mauvais coin is a leboncoin/craigslist like website where you can sell and bu
 * Node.js (Express)
 * Vue.js
 
-## To launch
-* Back : npm start
-* Front : cd src -> vue serve
+## Get started (dev)
+* Back-end : cd lmc_back && npm start
+* Front-end : cd lmc_front/src && vue serve
